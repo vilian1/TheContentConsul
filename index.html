@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vilian Amacna | Asynchronous Content Operations Architect</title>
+    
+    <!-- Importing Premium Executive Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Engine -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandNavy: '#020c1b',
+                        brandGold: '#d4a517',
+                        brandIceSlate: '#fbfafc',
+                        brandGrey: '#64748b',
+                        textCharcoal: '#0f172a'
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Premium Utilities and Backdrop Overrides */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fbfafc;
+            color: #0f172a;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .executive-gradient {
+            background: linear-gradient(135deg, #020c1b 0%, #071630 100%);
+        }
+        .pinstripe-overlay {
+            background-image: linear-gradient(rgba(212, 165, 23, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(212, 165, 23, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .shadow-premium {
+            box-shadow: 0 25px 50px -12px rgba(2, 12, 27, 0.15);
+        }
+        .modal-active {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden antialiased">
+
+    <header class="fixed top-0 left-0 w-full z-40 bg-brandNavy/95 backdrop-blur-md border-b border-brandGold/20 py-4 px-6 md:px-12 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Crest & Logo Area -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 relative flex-shrink-0">
+                    <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-[0_2px_8px_rgba(212,165,23,0.3)]">
+                        <path d="M50 10 L85 25 L85 60 C85 78 70 90 50 95 C30 90 15 78 15 60 L15 25 Z" fill="#020c1b" stroke="#d4a517" stroke-width="4"></path>
+                        <path d="M30 35 L45 70 L55 70 L70 35 L60 35 L50 60 L40 35 Z" fill="#d4a517"></path>
+                        <circle cx="50" cy="50" r="3" fill="#ffffff"></circle>
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white font-montserrat font-extrabold text-base tracking-wider leading-none uppercase group-hover:text-brandGold transition-colors">Vilian Amacna</span>
+                    <span class="text-slate-400 text-[9px] font-bold tracking-[0.2em] uppercase mt-1">Information Architect</span>
+                </div>
+            </a>
+            
+            <!-- Desk Navigation & Quick CTA -->
+            <div class="flex items-center gap-6">
+                <nav class="hidden lg:flex items-center gap-6 text-slate-200 font-medium text-xs tracking-wider uppercase">
+                    <a href="#problem" class="hover:text-brandGold transition-colors">The Bottleneck</a>
+                    <a href="#solution" class="hover:text-brandGold transition-colors">Operations Engine</a>
+                    <a href="#credibility" class="hover:text-brandGold transition-colors">Rigor & Credentials</a>
+                    <a href="#deliverables" class="hover:text-brandGold transition-colors">The Retainer</a>
+                </nav>
+                <button onclick="toggleModal(true)" class="bg-brandGold hover:bg-white text-brandNavy font-montserrat font-bold text-[10px] uppercase tracking-widest px-5 py-2.5 rounded-lg shadow-lg hover:shadow-brandGold/20 hover:-translate-y-0.5 transition-all duration-300">
+                    Request Audit
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative min-h-[90vh] lg:h-screen pt-24 pb-12 md:py-0 executive-gradient text-white overflow-hidden flex items-center">
+        <div class="absolute inset-0 pinstripe-overlay opacity-30 pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-brandGold/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/4 left-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Left: Impact Core Text -->
+                <div class="lg:col-span-7 flex flex-col text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/5 border border-brandGold/40 rounded-full px-4 py-1 self-start mb-4">
+                        <span class="w-1.5 h-1.5 rounded-full bg-brandGold animate-pulse"></span>
+                        <span class="text-brandGold text-[10px] font-montserrat font-bold tracking-widest uppercase">ASYNCHRONOUS CONTENT SYSTEM</span>
+                    </div>
+                    
+                    <h1 class="text-2xl sm:text-4xl lg:text-5xl font-montserrat font-extrabold tracking-tight leading-[1.15] uppercase text-white mb-4">
+                        TURNING CHAOTIC <span class="text-brandGold">FOUNDER IP</span> INTO PREMIUM BUSINESS ASSETS
+                    </h1>
+                    
+                    <!-- Text measure optimized (max-w-prose / ~66 chars per line) -->
+                    <p class="text-slate-200 font-inter text-base md:text-lg leading-relaxed mb-6 max-w-prose">
+                        Designed for elite B2B business coaches, fractional executive consulting firms, and agency leaders. We convert raw recordings into boardroom-level curriculum, client workbooks, and authority-driven B2B pipelines.
+                    </p>
+                    
+                    <!-- Bullet checklist -->
+                    <ul class="flex flex-col gap-3 mb-8 text-slate-100 max-w-prose">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-brandGold text-base mt-1"></i>
+                            <span class="text-sm font-medium leading-relaxed"><strong>Pure Spoken Vision:</strong> Simply drop your voice logs or live webinar links. Your hard work is officially finished.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-brandGold text-base mt-1"></i>
+                            <span class="text-sm font-medium leading-relaxed"><strong>No Corporate Bureaucracy:</strong> Plug-and-play execution engine requiring zero ongoing oversight or training.</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+                        <button onclick="toggleModal(true)" class="bg-brandGold hover:bg-white text-brandNavy font-montserrat font-bold text-xs uppercase tracking-widest px-6 py-4 rounded-lg shadow-xl shadow-brandGold/15 hover:shadow-white/10 hover:-translate-y-0.5 transition-all duration-300 text-center">
+                            Request Operations Audit <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                        <a href="#problem" class="text-slate-300 hover:text-white font-montserrat font-bold text-[11px] uppercase tracking-widest py-3 px-5 text-center transition-colors">
+                            Discover The Process
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right: High-end Frame of Vilian Amacna.jpg -->
+                <div class="lg:col-span-5 flex justify-center items-center">
+                    <div class="relative w-full max-w-sm group">
+                        <div class="absolute inset-0 bg-brandGold/20 rounded-2xl transform translate-x-3 translate-y-3 -z-10 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-300"></div>
+                        <div class="border-4 border-brandNavy bg-brandNavy shadow-2xl rounded-2xl overflow-hidden relative">
+                            <img src="Vilian.png" alt="Vilian Amacna Corporate Presentation" class="w-full object-cover h-[380px] object-top contrast-105" onerror="this.onerror=null; this.src='https://placehold.co/600x800/020c1b/fbfafc?text=Vilian+Amacna';">
+                            <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-brandNavy via-brandNavy/80 to-transparent">
+                                <p class="text-brandGold font-montserrat font-extrabold text-xs tracking-widest uppercase">Vilian Amacna</p>
+                                <p class="text-slate-200 text-[11px] font-inter mt-1 leading-normal">Executive Content Operations Architect</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="problem" class="py-16 bg-brandIceSlate border-b border-brandGrey/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-xs font-montserrat font-extrabold text-brandGold tracking-widest uppercase mb-2">The Operational Dilemma</h2>
+                <h3 class="text-2xl md:text-3xl font-montserrat font-black text-brandNavy uppercase leading-tight">The Million-Dollar Bottleneck</h3>
+                <div class="w-12 h-0.5 bg-brandGold mx-auto mt-3"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Stolen Hours Stats Display -->
+                <div class="lg:col-span-4">
+                    <div class="bg-brandNavy text-white p-8 rounded-2xl shadow-premium relative overflow-hidden flex flex-col items-center text-center border-b-4 border-brandGold">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-brandGold/5 rounded-full blur-xl"></div>
+                        <p class="text-brandGold font-montserrat font-black text-5xl md:text-6xl leading-none">10+ HR</p>
+                        <p class="text-white text-[11px] font-montserrat font-bold uppercase tracking-widest mt-3">Stolen Weekly From CEOs</p>
+                        <div class="w-8 h-px bg-white/20 my-4"></div>
+                        <p class="text-slate-300 font-inter text-xs leading-relaxed max-w-xs">
+                            Every single hour you spend styling checklists or typing out newsletters is an hour stolen from enterprise sales and high-level delivery.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Pain Points Detailed Grid -->
+                <div class="lg:col-span-8 space-y-4 text-left">
+                    <div class="bg-white p-5 rounded-xl border border-brandGrey/10 shadow-sm flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-600 font-extrabold text-base flex-shrink-0 mt-1">
+                            <i class="fa-solid fa-hourglass-empty"></i>
+                        </div>
+                        <div class="max-w-prose">
+                            <h4 class="text-base font-montserrat font-bold text-brandNavy uppercase mb-1">1. Spoken Intelligence Uncaptured</h4>
+                            <p class="text-brandGrey text-xs font-inter leading-relaxed">
+                                You drop massive value during live coaching Zoom calls, webinars, or spontaneous voice notes. But 90% of that brilliance disappears once the call ends because you lack a system to capture, edit, and archive it.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl border border-brandGrey/10 shadow-sm flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-600 font-extrabold text-base flex-shrink-0 mt-1">
+                            <i class="fa-solid fa-file-signature"></i>
+                        </div>
+                        <div class="max-w-prose">
+                            <h4 class="text-base font-montserrat font-bold text-brandNavy uppercase mb-1">2. Low-Value Operations Drainage</h4>
+                            <p class="text-brandGrey text-xs font-inter leading-relaxed">
+                                Top-tier agency leaders waste upwards of 10+ hours formatting PDFs, coordinating document layouts, or self-typing newsletters. This creates an administrative trap that halts your expansion pipelines.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-5 rounded-xl border border-brandGrey/10 shadow-sm flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-600 font-extrabold text-base flex-shrink-0 mt-1">
+                            <i class="fa-solid fa-user-slash"></i>
+                        </div>
+                        <div class="max-w-prose">
+                            <h4 class="text-base font-montserrat font-bold text-brandNavy uppercase mb-1">3. The Freelance Writer Quality Gap</h4>
+                            <p class="text-brandGrey text-xs font-inter leading-relaxed">
+                                Cheap, low-tier freelance writers lack the strategic business maturity to grasp complex consulting models and corporate logic. They write soft, basic copy meant for generic bots, which alienates your enterprise prospects.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Reference Visual styled nicely -->
+            <div class="mt-8 bg-white p-3 rounded-2xl border border-brandGrey/10 shadow-premium overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="p-6">
+                        <h4 class="text-xs font-montserrat font-extrabold text-brandGold tracking-widest uppercase mb-1">The Danger of Generalist Dilution</h4>
+                        <h3 class="text-xl font-montserrat font-bold text-brandNavy uppercase mb-3">Why AI Tools and Cheap Freelancers Fail Your Core Brand</h3>
+                        <p class="text-brandGrey text-xs leading-relaxed mb-4 font-inter max-w-prose">
+                            Transcripts generate messy blocks of unstructured text. This forces the highly paid founder into prompting, editing, and designing documents, turning the CEO into an administrative assistant.
+                        </p>
+                    </div>
+                    <div class="h-48 rounded-xl overflow-hidden">
+                        <img src="CEO Wasting Time.jpg" alt="Generalist writer dilution vs structural precision" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x450/020c1b/fbfafc?text=Generalist+Writer+Drainage';">
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="solution" class="py-16 bg-brandNavy text-white relative border-b border-brandGold/10">
+        <div class="absolute inset-0 pinstripe-overlay opacity-20 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-montserrat font-extrabold text-brandGold tracking-widest uppercase mb-2">The Solution Blueprint</h2>
+                <h3 class="text-2xl md:text-3xl font-montserrat font-black text-white uppercase leading-tight">Asynchronous Content Operations</h3>
+                <div class="w-12 h-0.5 bg-brandGold mx-auto mt-3"></div>
+            </div>
+            
+            <!-- PART 1: The Input & Output Engine -->
+            <div class="bg-white/5 border border-brandGold/20 rounded-2xl p-8 mb-16 shadow-2xl">
+                <div class="text-center md:text-left mb-6">
+                    <span class="text-brandGold text-[10px] font-montserrat font-bold tracking-[0.2em] uppercase">Part One: The Operations Engine</span>
+                    <h3 class="text-xl md:text-2xl font-montserrat font-extrabold text-white uppercase mt-1">The Zero-Friction Exchange</h3>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <!-- Text / Process pillars -->
+                    <div class="lg:col-span-7 space-y-6 text-left">
+                        <p class="text-slate-200 font-inter text-base leading-relaxed max-w-prose">
+                            I serve as your dedicated <strong>Executive Content Manager &amp; Information Architect</strong>. You speak naturally inside your daily operational zone—recording Zoom webinars or dropping simple Telegram memos. I handle the heavy operational lifting to build, format, and deploy your entire intellectual asset library.
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                            <div class="border-l-4 border-brandGold pl-4">
+                                <h4 class="text-brandGold font-montserrat font-bold text-xs tracking-widest uppercase mb-1">Input: Pure Spoken Vision</h4>
+                                <p class="text-slate-300 text-xs leading-relaxed font-inter max-w-prose">
+                                    Zero administrative copywriting required from the founder. Simply drop raw Zoom coaching files, ad-hoc Slack voice notes, or masterclass streams.
+                                </p>
+                            </div>
+                            <div class="border-l-4 border-brandGold pl-4">
+                                <h4 class="text-brandGold font-montserrat font-bold text-xs tracking-widest uppercase mb-1">Output: High-Ticket Infrastructure</h4>
+                                <p class="text-slate-300 text-xs leading-relaxed font-inter max-w-prose">
+                                    A systematic translation engine that transforms raw audio into interactive student workbooks, client SOP manuals, and daily high-signal LinkedIn campaigns.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vilian Shakes Hands Portrait Visual Block -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="border-2 border-brandGold/40 p-2 rounded-2xl bg-white/5 relative group w-full max-w-xs">
+                            <div class="absolute inset-0 bg-brandGold/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            <div class="aspect-[4/3] rounded-xl overflow-hidden border border-brandGold/20 relative">
+                                <img src="Vilian Shakes Hands.png" alt="Strategic Partnership Shakes Hands" class="w-full h-full object-cover object-top filter group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x800/020c1b/fbfafc?text=Strategic+Partnership';">
+                            </div>
+                            <p class="text-center text-brandGold font-montserrat font-bold text-[10px] uppercase tracking-widest mt-2">Partnership Alignment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PART 2: The Three Strategic Pillars -->
+            <div class="space-y-8">
+                <div class="text-center">
+                    <span class="text-brandGold text-[10px] font-montserrat font-bold tracking-[0.2em] uppercase">Part Two: Core Deliverable Infrastructure</span>
+                    <h3 class="text-xl md:text-2xl font-montserrat font-extrabold text-white uppercase mt-1">The Strategic Columns of Scale</h3>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white/5 border border-brandGold/20 p-6 rounded-xl flex flex-col items-start hover:border-brandGold transition-colors duration-300 shadow-lg">
+                        <div class="text-brandGold text-2xl mb-4"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h4 class="text-base font-montserrat font-bold text-white uppercase mb-2">1. Program Retention Assets</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed font-inter max-w-prose">
+                            Client Workbooks &amp; Masterclass SOPs designed to keep your high-paying mastermind students structured, retained, and successful inside your subscription programs.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white/5 border border-brandGold/20 p-6 rounded-xl flex flex-col items-start hover:border-brandGold transition-colors duration-300 shadow-lg">
+                        <div class="text-brandGold text-2xl mb-4"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <h4 class="text-base font-montserrat font-bold text-white uppercase mb-2">2. Conversion Lead Playbooks</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed font-inter max-w-prose">
+                            High-converting 15-page industry blueprints engineered to capture premium enterprise corporate email addresses and pre-qualify high-intent sales calls.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white/5 border border-brandGold/20 p-6 rounded-xl flex flex-col items-start hover:border-brandGold transition-colors duration-300 shadow-lg">
+                        <div class="text-brandGold text-2xl mb-4"><i class="fa-brands fa-linkedin"></i></div>
+                        <h4 class="text-base font-montserrat font-bold text-white uppercase mb-2">3. Authority Inbound Channels</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed font-inter max-w-prose">
+                            We write 12 custom system-driven LinkedIn publications per month alongside 4 editorial newsletters to continuously nurture high-ticket pipelines on autopilot.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="credibility" class="py-16 bg-brandIceSlate border-b border-brandGrey/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-montserrat font-extrabold text-brandGold tracking-widest uppercase mb-2">The Unfair Advantage</h2>
+                <h3 class="text-2xl md:text-3xl font-montserrat font-black text-brandNavy uppercase leading-tight">Institutional Rigor &amp; Credentials</h3>
+                <div class="w-12 h-0.5 bg-brandGold mx-auto mt-3"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Anchor 1: Information Synthesis Mastery -->
+                <div class="bg-white p-6 rounded-2xl border border-brandGrey/10 shadow-premium flex flex-col justify-between">
+                    <div>
+                        <div class="h-36 rounded-xl overflow-hidden mb-4">
+                            <img src="Brain.jpg" alt="Information architecture and editing precision" class="w-full h-full object-cover object-left" onerror="this.onerror=null; this.src='https://placehold.co/800x450/020c1b/fbfafc?text=Synthesis+Mastery';">
+                        </div>
+                        <h4 class="text-base font-montserrat font-bold text-brandNavy uppercase mb-2">Information Synthesis Mastery</h4>
+                        <p class="text-brandGrey text-xs font-inter leading-relaxed max-w-prose">
+                            Leveraging experience as an <strong>Academic Associate Editor</strong> and professional technical writer. Your complex training assets and program copy are refined with absolute structural logic, flawless grammar, and elite structural alignment.
+                        </p>
+                    </div>
+                    <div class="border-t border-brandGrey/10 pt-3 mt-4 text-[10px] text-brandGold font-montserrat font-bold uppercase tracking-wider">
+                        
+                    </div>
+                </div>
+                
+                <!-- Anchor 2: Corporate Rigor -->
+                <div class="bg-white p-6 rounded-2xl border border-brandGrey/10 shadow-premium flex flex-col justify-between">
+                    <div>
+                        <div class="h-36 rounded-xl overflow-hidden mb-4">
+                            <img src="Brain.jpg" alt="Boardroom Corporate Governance Standards" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x450/020c1b/fbfafc?text=Corporate+Rigor';">
+                        </div>
+                        <h4 class="text-base font-montserrat font-bold text-brandNavy uppercase mb-2">Corporate Governance Rigor</h4>
+                        <p class="text-brandGrey text-xs font-inter leading-relaxed max-w-prose">
+                            Serving as <strong>Board Secretary for Jul'z Gold Ore Mining</strong> taught me to manage critical, fast-moving corporate decisions and state compliance protocols with absolute procedural accuracy.
+                        </p>
+                    </div>
+                    <div class="border-t border-brandGrey/10 pt-3 mt-4 text-[10px] text-brandGold font-montserrat font-bold uppercase tracking-wider">
+                        
+                    </div>
+                </div>
+                
+                <!-- Anchor 3: Global Standards -->
+                <div class="bg-white p-6 rounded-2xl border border-brandGrey/10 shadow-premium flex flex-col justify-between">
+                    <div>
+                        <div class="h-36 rounded-xl overflow-hidden mb-4">
+                            <img src="Brain.jpg" alt="Vilian Amacna Global Compliance Portrait" class="w-full h-full object-cover object-top" onerror="this.onerror=null; this.src='https://placehold.co/800x450/020c1b/fbfafc?text=Global+Standards';">
+                        </div>
+                        <h4 class="text-base font-montserrat font-bold text-brandNavy uppercase mb-2">Global Standards Compliance</h4>
+                        <p class="text-brandGrey text-xs font-inter leading-relaxed max-w-prose">
+                            Documenting multi-stakeholder progress structures and reporting archives for <strong>UN-Habitat</strong> trained me to satisfy strict international benchmarks. There is absolute zero tolerance for formatting errors.
+                        </p>
+                    </div>
+                    <div class="border-t border-brandGrey/10 pt-3 mt-4 text-[10px] text-brandGold font-montserrat font-bold uppercase tracking-wider">
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="py-16 bg-brandNavy text-white">
+        <div class="absolute inset-0 pinstripe-overlay opacity-10 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-montserrat font-extrabold text-brandGold tracking-widest uppercase mb-2">The Production Blueprint</h2>
+                <h3 class="text-2xl md:text-3xl font-montserrat font-black text-white uppercase leading-tight">Your 30-Day Content Operations Loop</h3>
+                <div class="w-12 h-0.5 bg-brandGold mx-auto mt-3"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+                <!-- Timeline Connecting line (Desktop) -->
+                <div class="hidden md:block absolute top-[112px] left-[10%] right-[10%] h-0.5 bg-brandGold/20 z-0"></div>
+                
+                <div class="relative z-10 bg-white/5 border border-brandGold/20 rounded-xl p-5 text-center hover:border-brandGold transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-full bg-brandNavy border-2 border-brandGold flex items-center justify-center text-brandGold font-montserrat font-black text-base mx-auto mb-4 shadow-lg shadow-brandGold/10">01</div>
+                    <h4 class="text-base font-montserrat font-bold text-white uppercase mb-1">Wk 1: Ingestion</h4>
+                    <p class="text-slate-300 text-xs font-inter leading-relaxed max-w-prose mx-auto">
+                        Drop raw Loom files, webinars, or spontaneous Slack voice memos into your secure corporate portal. No script instructions required.
+                    </p>
+                </div>
+                
+                <div class="relative z-10 bg-white/5 border border-brandGold/20 rounded-xl p-5 text-center hover:border-brandGold transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-full bg-brandNavy border-2 border-brandGold flex items-center justify-center text-brandGold font-montserrat font-black text-base mx-auto mb-4 shadow-lg shadow-brandGold/10">02</div>
+                    <h4 class="text-base font-montserrat font-bold text-white uppercase mb-1">Wk 2: Synthesis</h4>
+                    <p class="text-slate-300 text-xs font-inter leading-relaxed max-w-prose mx-auto">
+                        We parse your spoken material, structuring complex voice concept taxonomy into flawless, high-contrast client workbooks and SOPs.
+                    </p>
+                </div>
+                
+                <div class="relative z-10 bg-white/5 border border-brandGold/20 rounded-xl p-5 text-center hover:border-brandGold transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-full bg-brandNavy border-2 border-brandGold flex items-center justify-center text-brandGold font-montserrat font-black text-base mx-auto mb-4 shadow-lg shadow-brandGold/10">03</div>
+                    <h4 class="text-base font-montserrat font-bold text-white uppercase mb-1">Wk 3: Distribution</h4>
+                    <p class="text-slate-300 text-xs font-inter leading-relaxed max-w-prose mx-auto">
+                        We formulate and script your 12 organic LinkedIn text documents and weekly newsletters to keep pipelines active.
+                    </p>
+                </div>
+                
+                <div class="relative z-10 bg-white/5 border border-brandGold/20 rounded-xl p-5 text-center hover:border-brandGold transition-colors duration-300">
+                    <div class="w-12 h-12 rounded-full bg-brandNavy border-2 border-brandGold flex items-center justify-center text-brandGold font-montserrat font-black text-base mx-auto mb-4 shadow-lg shadow-brandGold/10">04</div>
+                    <h4 class="text-base font-montserrat font-bold text-white uppercase mb-1">Wk 4: Deployment</h4>
+                    <p class="text-slate-300 text-xs font-inter leading-relaxed max-w-prose mx-auto">
+                        We systematically upload and queue your marketing files completely hands-off inside your distribution platforms.
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="deliverables" class="py-16 bg-brandIceSlate">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-montserrat font-extrabold text-brandGold tracking-widest uppercase mb-2">The Alignment</h2>
+                <h3 class="text-2xl md:text-3xl font-montserrat font-black text-brandNavy uppercase leading-tight">The Retainer Architecture</h3>
+                <div class="w-12 h-0.5 bg-brandGold mx-auto mt-3"></div>
+            </div>
+            
+            <div class="bg-white rounded-2xl border border-brandGrey/10 shadow-premium overflow-hidden max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12">
+                    <!-- Pricing / Retainer Model Column -->
+                    <div class="lg:col-span-5 bg-brandNavy text-white p-8 flex flex-col justify-center items-center text-center relative">
+                        <div class="absolute inset-0 pinstripe-overlay opacity-10 pointer-events-none"></div>
+                        <span class="text-brandGold text-[10px] font-montserrat font-extrabold tracking-widest uppercase mb-3">Engagement Structure</span>
+                        <h4 class="font-montserrat font-extrabold text-xl uppercase tracking-wider mb-3">Bespoke Monthly Retainer</h4>
+                        <p class="text-slate-300 text-xs leading-relaxed max-w-xs mb-6 font-inter">
+                            Custom retainer architectures aligned dynamically to your operational scope and pipeline goals.
+                        </p>
+                        <button onclick="toggleModal(true)" class="w-full bg-brandGold hover:bg-white text-brandNavy font-montserrat font-bold text-[10px] uppercase tracking-widest py-3.5 px-5 rounded-lg shadow-lg hover:shadow-white/5 transition-all duration-300">
+                            Book Diagnostic Session
+                        </button>
+                    </div>
+                    
+                    <!-- Deliverables Column -->
+                    <div class="lg:col-span-7 p-8 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-brandNavy font-montserrat font-bold text-xs tracking-widest uppercase mb-4 border-b border-brandGrey/10 pb-3 font-bold">Standard Monthly Operations Capacity:</h4>
+                            <ul class="space-y-3 text-brandGrey text-xs font-inter max-w-prose">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-green-600 mt-1"></i>
+                                    <span class="leading-relaxed"><strong>2-4 Client Workbooks &amp; SOPs</strong> parsed, designed, and fully formatted.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-green-600 mt-1"></i>
+                                    <span class="leading-relaxed"><strong>1 Premium Lead Playbook</strong> engineered and curated per quarter.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-green-600 mt-1"></i>
+                                    <span class="leading-relaxed"><strong>12 Thought Leadership Publications</strong> ghostwritten directly from your raw concept folders.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-green-600 mt-1"></i>
+                                    <span class="leading-relaxed"><strong>4 Weekly Editorial Newsletters</strong> drafted, checked, and queued inside your platform.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="text-brandGrey text-[9px] font-bold tracking-wider uppercase mt-6 border-t border-brandGrey/10 pt-3 leading-relaxed">
+                            Operations governed by strict boardroom and UN-level documentation standards.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer class="py-12 bg-brandNavy text-white border-t border-brandGold/20 relative">
+        <div class="absolute inset-0 pinstripe-overlay opacity-10 pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-6 md:px-12 text-center relative z-10">
+            
+            <div class="w-12 h-12 relative mx-auto mb-4">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path d="M50 10 L85 25 L85 60 C85 78 70 90 50 95 C30 90 15 78 15 60 L15 25 Z" fill="#020c1b" stroke="#d4a517" stroke-width="4"></path>
+                    <path d="M30 35 L45 70 L55 70 L70 35 L60 35 L50 60 L40 35 Z" fill="#d4a517"></path>
+                </svg>
+            </div>
+            
+            <h2 class="text-lg font-montserrat font-black tracking-widest uppercase mb-1">Vilian Amacna</h2>
+            <p class="text-brandGold text-[10px] font-montserrat font-bold tracking-[0.2em] uppercase mb-8">Information Architect &amp; Content Operations Expert</p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-slate-200 font-medium text-xs tracking-wider uppercase mb-8">
+                <a href="mailto:amacnavilian@gmail.com" class="hover:text-brandGold transition-colors"><i class="fa-solid fa-envelope text-brandGold mr-2"></i> amacnavilian@gmail.com</a>
+                <span class="hidden sm:inline w-1 h-1 rounded-full bg-brandGold"></span>
+                <a href="https://linkedin.com/in/vilian-amacna" target="_blank" class="hover:text-brandGold transition-colors"><i class="fa-brands fa-linkedin text-brandGold mr-2"></i> Vilian L. Amacna</a>
+            </div>
+            
+            <p class="text-slate-400 text-[9px] font-bold tracking-widest uppercase">
+                Designed to executive business coaching standards under brand kit metrics.
+            </p>
+            
+        </div>
+    </footer>
+
+    <div id="captureModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-brandNavy/95 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <!-- Modal Wrapper -->
+        <div class="bg-brandNavy border border-brandGold/40 w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300" id="modalContainer">
+            <div class="absolute inset-0 pinstripe-overlay opacity-10 pointer-events-none"></div>
+            
+            <!-- Close Button -->
+            <button onclick="toggleModal(false)" class="absolute top-4 right-4 text-slate-300 hover:text-white transition-colors text-xl p-2 z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <!-- Header branding crest inside form -->
+            <div class="p-6 md:p-8 border-b border-white/10 text-center relative z-10 bg-brandNavy">
+                <div class="w-10 h-10 relative mx-auto mb-3">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <path d="M50 10 L85 25 L85 60 C85 78 70 90 50 95 C30 90 15 78 15 60 L15 25 Z" fill="#020c1b" stroke="#d4a517" stroke-width="4"></path>
+                        <path d="M30 35 L45 70 L55 70 L70 35 L60 35 L50 60 L40 35 Z" fill="#d4a517"></path>
+                    </svg>
+                </div>
+                <h3 class="text-white font-montserrat font-extrabold text-base tracking-wider uppercase">REQUEST EXECUTIVE CONTENT AUDIT</h3>
+                <p class="text-brandGold text-[10px] font-montserrat font-extrabold tracking-widest uppercase mt-1">1 of Only 3 Production Slots Open This Month</p>
+            </div>
+            
+            <!-- Dynamic State Form Content -->
+            <div class="p-6 md:p-8 relative z-10" id="modalBody">
+                <form id="auditForm" onsubmit="handleFormSubmission(event)" class="space-y-4 text-left">
+                    <div>
+                        <label class="block text-slate-200 font-inter text-[10px] font-bold uppercase tracking-wider mb-1.5">First Name</label>
+                        <input required type="text" id="firstName" class="w-full bg-white/5 border border-white/20 rounded-lg py-2.5 px-3 text-white font-inter text-xs focus:outline-none focus:border-brandGold transition-colors" placeholder="Enter your first name">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-slate-200 font-inter text-[10px] font-bold uppercase tracking-wider mb-1.5">Designation</label>
+                        <input required type="text" id="designation" class="w-full bg-white/5 border border-white/20 rounded-lg py-2.5 px-3 text-white font-inter text-xs focus:outline-none focus:border-brandGold transition-colors" placeholder="e.g., Managing Partner, CEO, Fractional CFO">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-slate-200 font-inter text-[10px] font-bold uppercase tracking-wider mb-1.5">Corporate Email Address</label>
+                        <input required type="email" id="email" class="w-full bg-white/5 border border-white/20 rounded-lg py-2.5 px-3 text-white font-inter text-xs focus:outline-none focus:border-brandGold transition-colors" placeholder="name@yourconsultingfirm.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-slate-200 font-inter text-[10px] font-bold uppercase tracking-wider mb-1.5">Mobile Number</label>
+                        <input required type="tel" id="mobileNumber" class="w-full bg-white/5 border border-white/20 rounded-lg py-2.5 px-3 text-white font-inter text-xs focus:outline-none focus:border-brandGold transition-colors" placeholder="+1 (555) 000-0000">
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-brandGold hover:bg-white text-brandNavy font-montserrat font-bold text-[10px] uppercase tracking-widest py-3 px-5 rounded-lg shadow-xl shadow-brandGold/15 transition-all duration-300">
+                        Submit Audit Request <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                    
+                    <p class="text-[9px] text-slate-400 text-center leading-normal">
+                        Strictly confidential. Data mapped under strict institutional standards.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal State Control Functions
+        function toggleModal(show) {
+            const modal = document.getElementById('captureModal');
+            const container = document.getElementById('modalContainer');
+            
+            if (show) {
+                document.body.classList.add('modal-active');
+                modal.classList.remove('pointer-events-none', 'opacity-0');
+                modal.classList.add('opacity-100');
+                setTimeout(() => {
+                    container.classList.remove('scale-95', 'opacity-0');
+                    container.classList.add('scale-100', 'opacity-100');
+                }, 50);
+            } else {
+                document.body.classList.remove('modal-active');
+                container.classList.remove('scale-100', 'opacity-100');
+                container.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-100');
+                    modal.classList.add('opacity-0', 'pointer-events-none');
+                }, 150);
+            }
+        }
+        
+        // Form Submission Logic using custom Success Panel (avoiding alerts)
+        function handleFormSubmission(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('firstName').value;
+            const designation = document.getElementById('designation').value;
+            const email = document.getElementById('email').value;
+            
+            const modalBody = document.getElementById('modalBody');
+            
+            // Render premium Success Panel inside popup container
+            modalBody.innerHTML = `
+                <div class="text-center py-6 space-y-4">
+                    <div class="w-12 h-12 rounded-full bg-brandGold/20 border-2 border-brandGold flex items-center justify-center text-brandGold text-2xl mx-auto mb-2 animate-bounce">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h4 class="text-white font-montserrat font-extrabold text-base tracking-wider uppercase">AUDIT REQUEST LOGGED SUCCESSFULLY</h4>
+                    <p class="text-slate-300 text-xs font-inter leading-relaxed max-w-sm mx-auto">
+                        Thank you, <strong>\${name}</strong> (\${designation}). Your asynchronous evaluation request has been prioritized inside our executive secure channels.
+                    </p>
+                    <div class="w-8 h-px bg-white/10 mx-auto my-4"></div>
+                    <p class="text-brandGold text-[10px] font-montserrat font-bold tracking-widest uppercase">
+                        Vilian Amacna will review your pipeline assets & reach out via \${email} shortly.
+                    </p>
+                    <button onclick="toggleModal(false)" class="bg-white/10 hover:bg-white/20 text-white font-montserrat font-bold text-[10px] uppercase tracking-widest py-2.5 px-6 rounded-lg transition-colors">
+                        Close
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Close modal on click outside modal container
+        window.onclick = function(event) {
+            const modal = document.getElementById('captureModal');
+            if (event.target == modal) {
+                toggleModal(false);
+            }
+        }
+    </script>
+
+</body>
+</html>
